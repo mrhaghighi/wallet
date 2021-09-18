@@ -20,3 +20,7 @@ $router->get('/', function () use ($router) {
 $router->get('/balance/{userId}', [
     'as' => 'balance', 'uses' => 'WalletController@show'
 ]);
+
+$router->post('/add-money', [
+    'as' => 'addMoney', 'uses' => 'WalletController@store'
+]);
