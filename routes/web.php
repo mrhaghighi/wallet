@@ -16,3 +16,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/balance/{userId}', [
+    'as' => 'balance', 'uses' => 'WalletController@show'
+]);
