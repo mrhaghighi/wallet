@@ -49,6 +49,9 @@ class IncreaseBalance
             'status'    => self::TRANSACTION_INIT_STATUS
         ]);
 
+        // Log process
+        Log::info("[Increase Balance][Submit Transaction] A transaction with {$amount} created for user {$userId}. Transaction ID is {$transaction->id}");
+
         // Add balance & update transaction status
         try {
             Balance::where('user_id', $userId)
@@ -61,8 +64,11 @@ class IncreaseBalance
             ]);
 
             $status = true;
+
+            // Log process
+            Log::info("[Increase Balance][Success Transaction] Transaction {$transaction->id} completed successfully");
         } catch (Exception $exception) {
-            Log::error('[Transaction][Add Balance] An error occurred when incrementing user balance. Exception: ' . $exception->getMessage());
+            Log::error("[Increase Balance][Failed Transaction] An error occurred when incrementing user balance. Transaction ID is {$transaction->id}. Exception: " . $exception->getMessage());
 
             // Update transaction status
             $transaction->update([

@@ -4,6 +4,7 @@ namespace App\Services\Balance;
 
 use App\Models\Balance;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 
 class GetBallance
 {
@@ -23,6 +24,9 @@ class GetBallance
         if (!isset($balance->balance)) {
             throw new ModelNotFoundException('Your user ID is wrong.');
         }
+
+        // Log process
+        Log::info("[Balance][Get Balance] User {$userId} got his balance. The balance is: {$balance->balance}");
 
         return $balance->balance;
     }
