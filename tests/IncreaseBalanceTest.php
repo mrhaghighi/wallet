@@ -4,7 +4,6 @@ use App\Models\Balance;
 use App\Services\Balance\GetBallance;
 use App\Services\Balance\IncreaseBalance;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -69,6 +68,25 @@ class IncreaseBalanceTest extends TestCase
 
         // Assert increasing value
         $this->expectException(ModelNotFoundException::class);
+        app()->make(IncreaseBalance::class)->increase($notValidUserId, $increasingAmount);
+    }
+
+    /**
+     * test for increase balance with negative amount for not valid user
+     *
+     * @return void
+     */
+    public function testIncreaseBalanceWithNegativeAmountForNotalidUser()
+    {
+        // Create balance
+        $maxUserIdInBalances = Balance::max('user_id');
+        $notValidUserId = $maxUserIdInBalances + rand(100, 1000);
+
+        // Increasing balance amount
+        $increasingAmount = rand(-1, -100);
+
+        // Assert increasing value
+        $this->expectException(HttpException::class);
         app()->make(IncreaseBalance::class)->increase($notValidUserId, $increasingAmount);
     }
 }

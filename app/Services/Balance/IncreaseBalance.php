@@ -95,14 +95,14 @@ class IncreaseBalance
      */
     protected function validate(int $userId, float $amount): void
     {
-        // Check user wallet exists or not
-        if (!app()->make(ValidateUser::class)->checkWalletExistence($userId)) {
-            throw new ModelNotFoundException("There isn't any wallet for this user.");
-        }
-
         // Check amount is positive or not
         if ($amount < 0) {
             throw new HttpException(500, 'The amount should be positive.');
+        }
+        
+        // Check user wallet exists or not
+        if (!app()->make(ValidateUser::class)->checkWalletExistence($userId)) {
+            throw new ModelNotFoundException("There isn't any wallet for this user.");
         }
     }
 }
