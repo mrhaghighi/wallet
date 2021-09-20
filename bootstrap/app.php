@@ -48,6 +48,11 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->singleton(App\Services\Validate\ValidateUser\ValidateUser::class);
+$app->singleton(App\Services\Balance\GetBallance::class);
+$app->singleton(App\Services\Balance\IncreaseBalance::class);
+$app->singleton(App\Services\Transaction\ReferenceNumberGenerator::class);
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
