@@ -17,7 +17,7 @@ class GetBalanceApiTest extends TestCase
         // Create a balance
         $balance = Balance::factory()->create();
 
-        $this->json('GET', "/balance/{$balance->user_id}")
+        $this->json('GET', "/balances/{$balance->user_id}")
             ->seeJson([
                 'status' => 'success'
             ])
