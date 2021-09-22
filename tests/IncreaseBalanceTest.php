@@ -57,7 +57,7 @@ class IncreaseBalanceTest extends TestCase
      *
      * @return void
      */
-    public function testIncreaseBalanceWithPositiveAmountForNotalidUser()
+    public function testIncreaseBalanceWithPositiveAmountForNotValidUser()
     {
         // Create balance
         $maxUserIdInBalances = Balance::max('user_id');
@@ -76,7 +76,7 @@ class IncreaseBalanceTest extends TestCase
      *
      * @return void
      */
-    public function testIncreaseBalanceWithNegativeAmountForNotalidUser()
+    public function testIncreaseBalanceWithNegativeAmountForNotValidUser()
     {
         // Create balance
         $maxUserIdInBalances = Balance::max('user_id');
