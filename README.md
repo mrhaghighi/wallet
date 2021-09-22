@@ -21,7 +21,7 @@ Then you should create a database with `wallet` name and change DB_* variables i
 
 ## Getting Started
 
-### Convert MySQL Records to Elasticsearch Documents
+### Run Project
 
 ```bash
 php -S localhost:8000 -t public
@@ -61,6 +61,20 @@ amount=<increase_amount>
             "message": null
         }
     }
+```
+
+## Commands
+
+### Show Today Transactions Amount
+
+```bash
+php artisan transactions:today
+```
+
+### Show Total Transactions Amount
+
+```bash
+php artisan transactions:total
 ```
 
 ## Environment
