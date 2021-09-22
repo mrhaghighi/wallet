@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        // Print daily transactions at the end of day
+        $schedule->command('transactions:today')->cron('59 23 * * *');
     }
 }
